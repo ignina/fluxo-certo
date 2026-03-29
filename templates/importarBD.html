@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Importar Dados</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 60px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            background:#4a90e2;
+            color:white;
+            border:none;
+            padding:12px;
+            border-radius:6px;
+            cursor:pointer;
+            width: 100%;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .voltar {
+            display:block;
+            margin-top:15px;
+            text-decoration:none;
+            color:#4E95D9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>📥 Importar Base de Dados</h2>
+
+    <form action="/import_excel" method="post" enctype="multipart/form-data">
+
+        <label>Destino:</label>
+
+        <select name="origem" required>
+            <option value="">Selecione...</option>
+            <option value="livrocaixa">📊 Livro Caixa</option>
+            <option value="cartao">💳 Cartão</option>
+        </select>
+
+        <input type="file" name="arquivo" accept=".xlsx" required>
+
+        <button type="submit">📤 Importar</button>
+
+    </form>
+
+    <a href="/dashboard" class="voltar">⬅ Voltar</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+body {
+    font-family: Arial;
+    background: #f4f6f8;
+}
+
+/* container */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* layout em linha */
+.linha {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* cada campo */
+.campo {
+    flex: 1;
+    min-width: 120px;
+}
+
+/* inputs */
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+}
+
+/* checkbox */
+input[type="checkbox"] {
+    width: auto;
+}
+
+/* botões */
+button {
+    padding: 10px 15px;
+    background: #4E95D9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* botão delete */
+.delete-btn {
+    background: #e74c3c;
+}
+
+/* tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: #4E95D9;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* valor alinhado */
+.valor {
+    text-align: right;
+}
+
+/* gráficos */
+.grafico-container {
+    margin-top: 20px;
+}
+
+/* tabela responsiva */
+.tabela-container {
+    overflow-x: auto;
+}
+
+/* responsivo */
+@media (max-width: 600px) {
+    .linha {
+        flex-direction: column;
+    }
+}

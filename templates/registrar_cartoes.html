@@ -1,0 +1,29 @@
+<h2>Cartões</h2>
+
+<form method="POST" action="/salvar-cartao">
+    <input type="text" name="nome_cartao" placeholder="Nome do cartão">
+    <input type="number" step="0.01" name="limite" placeholder="Limite">
+    <button type="submit">Salvar</button>
+</form>
+
+<hr>
+
+{% for c in cartoes %}
+    <div style="margin-bottom:8px;">
+        {{ c[1] }} - Limite: R$ {{ c[2] }}
+
+        <a href="/excluir-cartao/{{ c[0] }}">
+            <button style="
+                background:#e74c3c;
+                color:white;
+                border:none;
+                padding:5px 10px;
+                border-radius:5px;
+                cursor:pointer;
+                margin-left:10px;
+            ">
+                Excluir
+            </button>
+        </a>
+    </div>
+{% endfor %}

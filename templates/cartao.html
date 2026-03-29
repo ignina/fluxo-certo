@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cartões</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<body>
+    <html>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f6f8;
+    overflow-x: hidden;
+}
+
+/* CONTAINER */
+.container {
+    width: 95%;
+    max-width: 1000px;
+    margin: 15px auto;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+/* TÍTULO */
+h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* BOTÃO VOLTAR */
+.btn-voltar {
+    display: inline-block;
+    background: #4E95D9;
+    color: white !important;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #e3e9f0;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card strong {
+    font-size: 12px;
+    color: #555;
+}
+
+.card span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* BLOCO */
+.bloco {
+    background: #eef3f7;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.bloco h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* FORM */
+.linha {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.campo {
+    flex: 1;
+    min-width: 120px;
+}
+
+label {
+    font-weight: bold;
+    font-size: 13px;
+}
+
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.data-curta {
+    max-width: 160px;
+}
+
+/* BOTÕES */
+.btn {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.2s;
+}
+
+/* CORES */
+.btn-primary {
+    background: #4E95D9;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #3c7bb8;
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+}
+
+.btn-secondary {
+    background: #ecf0f1;
+    color: #2c3e50;
+}
+
+.btn-secondary:hover {
+    background: #d0d7de;
+}
+
+/* EFEITO */
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+/* cores */
+.btn-icon.btn-secondary {
+    background: #ecf0f1;
+}
+
+.btn-icon.btn-danger {
+    background: #e74c3c;
+    color: white;
+}
+
+/* hover */
+.btn-icon:hover {
+    transform: scale(1.1);
+}
+
+/* CARD DO CARTÃO */
+.cartao-card {
+    background:#f8fafc;
+    border:1px solid #e3e8ee;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:12px;
+}
+
+.cartao-info {
+    margin-top:8px;
+    font-size:13px;
+}
+
+.cartao-fatura {
+    margin-top:8px;
+    padding:6px 10px;
+    background:#fff5f5;
+    border-radius:6px;
+    display:inline-block;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.barra {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.barra-bg {
+    flex:1;
+    background:#ddd;
+    height:10px;
+    border-radius:5px;
+    overflow:hidden;
+}
+
+.barra-fill {
+    height:100%;
+    border-radius:5px;
+    transition: width 0.6s ease;
+}
+.barra-texto {
+    min-width: 40px;
+    text-align: right;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* TABELA */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th {
+    background: #4E95D9;
+    color: white;
+    font-size: 13px;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+}
+
+.valor {
+    text-align: right;
+}
+
+.acoes {
+    text-align: center;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        padding: 12px;
+        border-radius: 0;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    /* CARDS */
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* FORM */
+    .linha {
+        flex-direction: column;
+    }
+
+    /* TABELA */
+    table {
+        font-size: 12px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topo">
+
+    <h1>💳 Cartões</h1>
+
+<div style="margin-top:15px;">
+    <a href="/dashboard" class="btn-voltar">
+        ⬅ Voltar
+    </a>
+</div><br>
+
+</div>
+
+<!-- CARDS -->
+<div class="cards">
+
+    <div class="card">
+        <strong>Total Compras</strong><br>
+        <span>
+            R$ {{ "{:,.2f}".format(total_compras).replace(",", "X").replace(".", ",").replace("X", ".") }}
+        </span>
+    </div>
+    <div class="card">
+        <strong>Total Pago</strong><br>
+        <span style="color:green; font-weight:bold;">
+         R$ {{ "{:,.2f}".format(total_pago).replace(",", "X").replace(".", ",").replace("X", ".") }}
+        </span>
+    </div>
+
+    <div class="card">
+        <strong>Parcelado</strong><br>
+        <span>
+            R$ {{ "{:,.2f}".format(total_parcelado).replace(",", "X").replace(".", ",").replace("X", ".") }}
+        </span>
+    </div>
+
+    <div class="card">
+        <strong>Mês Atual</strong><br>
+        <span>
+            R$ {{ "{:,.2f}".format(total_mes).replace(",", "X").replace(".", ",").replace("X", ".") }}
+        </span>
+    </div>
+    <div class="card">
+    <strong>Limite Total</strong><br>
+    <span>
+        R$ {{ "{:,.2f}".format(limite_total).replace(",", "X").replace(".", ",").replace("X", ".") }}
+    </span>
+</div>
+
+<div class="card">
+    <strong>Limite Liberado</strong><br>
+    <span 
+        style="
+        font-weight:bold;
+        font-size:26px;
+        color:
+        {% if limite_liberado < 0 %}
+        red
+        {% elif limite_liberado <= (limite_total * 0.2) %}
+        orange
+        {% else %}
+        green
+        {% endif %}
+        ;">
+        R$ {{ "{:,.2f}".format(limite_liberado).replace(",", "X").replace(".", ",").replace("X", ".") }}
+    </span>
+</div>
+
+</div>
+
+<!-- CADASTRO DE CARTÕES -->
+<div class="bloco">
+
+    <h3>💳 Cadastrar Cartão</h3>
+
+    <form action="/salvar-cartao" method="post">
+
+        <div class="linha">
+
+            <div class="campo">
+                <label>Nome do cartão</label>
+                <input type="text" name="nome_cartao" required>
+            </div>
+
+            <div class="campo">
+                <label>Limite</label>
+                <input type="number" step="0.01" name="limite" required>
+            </div>
+
+            <div class="campo">
+                <label>Dia do fechamento da fatura</label>
+                <input type="number" name="fechamento" min="1" max="31" placeholder="Ex: 10" required>
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Salvar
+        </button>
+
+    </form>
+
+</div>
+<!-- LISTA DE CARTÕES -->
+<div style="margin-top:30px;">
+
+    <strong style="display:block; margin-bottom:15px; font-size:16px;">
+        💳 Cartões cadastrados
+    </strong>
+
+    {% for c in cartoes %}
+
+        {% set gasto = gastos_dict.get(c[1], 0) %}
+        {% set saldo = c[2] - gasto %}
+        {% set perc = (gasto / c[2]) if c[2] > 0 else 0 %}
+
+        <!-- CARD DO CARTÃO -->
+<div class="cartao-card">
+
+    <!-- NOME -->
+    <strong style="font-size:16px;"> {{ c[1] }} </strong>
+    <div style="font-size:12px; color:#666; margin-top:4px;">
+📅 Fecha todo dia: {{ c[4] }}
+</div>
+
+    <!-- ALERTA -->
+    {% if saldo < 0 %}
+        <div style="
+            background:#ffe5e5;
+            color:#b30000;
+            padding:6px 10px;
+            border-radius:6px;
+            margin-top:8px;
+            font-size:13px;
+            font-weight:bold;
+            display:inline-block;
+        ">
+            ⚠ Limite estourado
+        </div>
+    {% endif %}
+
+    <!-- INFO FINANCEIRA (CORRIGIDA) -->
+    <div style="margin-top:10px; font-size:14px;">
+     Limite: <span style="font-weight:bold; color:blue;">{{ c[2] | real }}</span>    | 
+        Gasto: Gasto: 
+<span style="font-weight:bold; color:red;">
+    {{ gasto | real }}
+</span> | 
+        Disponível:
+        <span style="font-weight:bold; color:
+        {% if saldo < 0 %}
+            red
+        {% elif saldo <= (c[2] * 0.2) %}
+            orange
+        {% else %}
+            green
+        {% endif %}
+        ;">
+            {{ saldo | real }}
+        </span>
+    </div>
+
+    <!-- 💳 FATURA -->
+    <div style="
+        margin-top:10px;
+        padding:6px 10px;
+        background:#fff5f5;
+        border-radius:6px;
+        display:inline-block;
+        font-size:14px;
+        font-weight:bold;
+    ">
+        💳 Fatura do mês:
+        <span style="color:#e74c3c;">
+            {{ fatura_por_cartao.get(c[1], 0)|real }}
+        </span>
+    </div>
+
+<!-- BARRA -->
+<div class="barra">
+
+    <div class="barra-bg">
+
+        <div class="barra-fill"
+             style="
+                width: {{ perc * 100 }}%;
+                background:
+                {% if perc > 1 %}
+                    red
+                {% elif perc > 0.8 %}
+                    orange
+                {% else %}
+                    green
+                {% endif %}
+             ">
+        </div>
+
+    </div>
+
+    <div class="barra-texto">
+        {{ "%.0f"|format(perc * 100) }}%
+    </div>
+
+</div>
+
+    <!-- AÇÕES -->
+    <div style="margin-top:12px; display:flex; gap:8px;">
+    
+    <a href="/editar_cartao/{{ c[0] }}">
+        <button class="btn btn-secondary">✏️ Editar</button>
+    </a>
+
+    <a href="/excluir-cartao/{{ c[0] }}">
+        <button class="btn btn-danger">
+            <i class="fas fa-trash"></i> Excluir
+        </button>
+    </a>
+
+</div>
+
+</div>
+
+    {% endfor %}
+
+</div>
+
+<!-- CADASTRAR COMPRAS NO CARTÃO -->
+<div class="bloco">
+
+    <h3>🧾 Cadastrar Compra</h3>
+    <br>
+
+    <form id="form-cartao" action="/add_cartao" method="post">
+
+        <!-- LINHA 1 -->
+        <div class="linha">
+
+            <div class="campo data-curta">
+                <label>Data da compra</label>
+                <input type="date" name="data_compra">
+            </div>
+
+            <div class="campo" style="flex:2;">
+                <label>Descrição</label>
+                <input type="text" name="descricao">
+            </div>
+
+        </div>
+
+        <!-- LINHA 2 -->
+        <div class="linha">
+
+            <div class="campo">
+                <label>Valor total da compra nesta data</label>
+                <input type="number" step="0.01" name="valor_total">
+            </div>
+
+            <div class="campo">
+                <label>Em quantas parcelas?</label>
+                <input type="number" name="parcelas">
+
+                <div id="preview-parcela" 
+                    style="margin-top:5px; color:#4E95D9; font-weight:bold; font-size:13px;">
+                </div>
+            </div>
+
+            <div class="campo">
+                <label>Cartão</label>
+                <select name="nome_cartao" required>
+                    <option value="">Selecione o cartão</option>
+
+                    {% for c in cartoes %}
+                        <option 
+                            value="{{ c[1] }}"
+                            data-limite="{{ c[2] }}"
+                            data-gasto="{{ gastos_dict.get(c[1], 0) }}"
+                        >
+                            {{ c[1] }} (Limite: R$ {{ c[2] }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+        </div>
+
+        <!-- BOTÃO -->
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Salvar
+        </button>
+
+    </form>
+
+</div>
+<!-- FILTROS -->
+<div class="bloco">
+
+
+
+</div>
+
+<!-- TABELA -->
+<div class="tabela-container">
+
+<table>
+<tr>
+    <th>ID</th>
+    <th>Data</th>
+    <th>Descrição</th>
+    <th>Valor</th>
+    <th align="center">Parcelas</th>
+    <th>Ações</th>
+</tr>
+
+{% for item in dados %}
+<tr>
+    <!-- ID -->
+    <td>{{ item[0] }}</td>
+
+    <!-- DATA -->
+    <td>
+        {{ item[1][8:10] }}/{{ item[1][5:7] }}/{{ item[1][0:4] }}
+    </td>
+
+    <!-- DESCRIÇÃO -->
+    <td>{{ item[4] }}</td>
+
+    <!-- VALOR -->
+    <td class="valor">
+        R$ {{ "{:,.2f}".format(item[2]).replace(",", "X").replace(".", ",").replace("X", ".") }}
+    </td>
+
+    <!-- PARCELAS -->
+    <td>{{ item[3] }}</td>
+
+    <!-- AÇÕES -->
+    <td class="acoes">
+
+        <a href="/parcelas/{{ item[0] }}" class="btn-icon btn-secondary">
+            <i class="fas fa-file"></i>
+        </a>
+
+        <a href="/edit_cartao/{{ item[0] }}" class="btn-icon btn-secondary">
+            <i class="fas fa-pen"></i>
+        </a>
+
+        <form action="/delete_cartao/{{ item[0] }}" method="post" style="display:inline;"
+        onsubmit="return confirm('Tem certeza que deseja excluir este lançamento?');">
+
+            <button class="btn-icon btn-danger">
+                <i class="fas fa-trash"></i>
+            </button>
+
+        </form>
+
+    </td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+document.querySelector("form[action='/add_cartao']").addEventListener("submit", function(e) {
+    
+    let valor = parseFloat(document.querySelector("input[name='valor_total']").value) || 0;
+
+    // ⚠️ Aqui vamos pegar o limite e gasto (simplificado depois melhoramos)
+    let limite = {{ limite_total }};
+    let gasto = {{ total_compras }};
+
+    if ((gasto + valor) > limite) {
+        let confirmar = confirm("⚠️ Atenção! Essa compra ultrapassa o limite do cartão.\nDeseja continuar mesmo assim?");
+        
+        if (!confirmar) {
+            e.preventDefault();
+        }
+    }
+
+});
+</script>
+
+<script>
+document.getElementById("form-cartao").addEventListener("submit", function(e) {
+    
+    let valor = parseFloat(document.querySelector("input[name='valor_total']").value) || 0;
+
+    let select = document.querySelector("select[name='nome_cartao']");
+    let option = select.options[select.selectedIndex];
+
+    let limite = parseFloat(option.getAttribute("data-limite")) || 0;
+    let gasto = parseFloat(option.getAttribute("data-gasto")) || 0;
+
+    if ((gasto + valor) > limite) {
+        let confirmar = confirm("⚠️ Este cartão ficará acima do limite.\nDeseja continuar?");
+        
+        if (!confirmar) {
+            e.preventDefault();
+        }
+    }
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Metas</title>
+
+    <style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f6f8;
+    overflow-x: hidden;
+}
+
+/* CONTAINER */
+.container {
+    width: 95%;
+    max-width: 1000px;
+    margin: 15px auto;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+/* TÍTULO */
+h1 {
+    text-align: center;
+    font-size: 22px;
+    margin: 10px 0 15px 0;
+}
+
+/* BOTÃO VOLTAR */
+.btn-voltar {
+    display: inline-block;
+    background: #4E95D9;
+    color: white !important;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.btn-voltar:active {
+    transform: scale(0.95);
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #e3e9f0;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card strong {
+    font-size: 12px;
+    color: #555;
+}
+
+.card span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.valor-positivo {
+    color: #27ae60;
+}
+
+/* BLOCO FORM */
+.bloco {
+    background: #eef3f7;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.bloco h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+/* FORM */
+.linha {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.campo {
+    flex: 1;
+    min-width: 120px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* BOTÃO */
+.btn-primary {
+    background: #4E95D9;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* CARD META */
+.meta-card {
+    background:#ffffff;
+    padding:14px;
+    border-radius:12px;
+    margin-bottom:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* BARRA */
+.barra {
+    background:#eee;
+    height:14px;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:8px;
+}
+
+/* TEXTO */
+small {
+    font-size: 12px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+    .container {
+        padding: 12px;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    /* CARDS MOBILE */
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .card span {
+        font-size: 16px;
+    }
+
+    /* FORM */
+    .linha {
+        flex-direction: column;
+    }
+
+    /* META CARD */
+    .meta-card {
+        padding: 12px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎯 Metas</h1>
+
+<div style="margin-top:15px;">
+    <a href="/dashboard" class="btn-voltar">
+        ⬅ Voltar
+    </a>
+</div>
+
+<br>
+
+<!-- 🔥 CARDS -->
+<div class="cards">
+
+    <div class="card">
+    <strong>Meta Total</strong><br>
+    <span>{{ total_meta|real }}</span>
+</div>
+
+<div class="card">
+    <strong>Investido</strong><br>
+    <span class="valor-positivo">{{ total_investido|real }}</span>
+</div>
+
+<div class="card">
+    <strong>Falta</strong><br>
+    <span style="color:red;">{{ falta|real }}</span>
+</div>
+
+</div>
+
+<hr>
+
+<!-- 🔥 FORM -->
+<div class="bloco">
+
+<h3>Nova Meta</h3>
+
+<form method="POST" action="/salvar-meta">
+
+<div class="linha">
+
+    <div class="campo">
+        <label>Nome</label>
+        <input type="text" name="nome" required>
+    </div>
+
+    <div class="campo">
+        <label>Valor da Meta</label>
+        <input type="number" step="0.01" name="valor_total" required>
+    </div>
+
+    <div class="campo">
+        <label>Data</label>
+        <input type="date" name="data_meta">
+    </div>
+
+</div>
+
+<br>
+
+<button class="btn btn-primary">
+    💾 Salvar
+</button>
+
+</form>
+
+</div>
+
+<hr>
+
+<!-- 🔥 LISTA -->
+<h3>📊 Suas Metas</h3>
+
+{% for m in metas %}
+
+{% set progresso = ((total_investido / m[2]) * 100) if m[2] > 0 else 0 %}
+{% if progresso > 100 %}
+    {% set progresso = 100 %}
+{% endif %}
+
+<!-- 🔥 COLE AQUI -->
+{% set perc_invest = (total_investimentos / m[2] * 100) if m[2] > 0 else 0 %}
+{% set perc_meta = (total_guardado_meta / m[2] * 100) if m[2] > 0 else 0 %}
+
+{% if perc_invest > 100 %}
+    {% set perc_invest = 100 %}
+{% endif %}
+
+{% if perc_meta > 100 %}
+    {% set perc_meta = 100 %}
+{% endif %}
+
+<div class="meta-card">
+
+<strong>
+{{ m[1] }}
+{% if m[4] %}
+ - {{ m[4].split('-')[2] }}/{{ m[4].split('-')[1] }}/{{ m[4].split('-')[0] }}
+{% endif %}
+</strong>
+
+<!-- 🔥 BOTÃO -->
+<div style="margin-top:8px; display:flex; gap:10px;">
+
+    <a href="/excluir-meta/{{ m[0] }}" 
+       onclick="return confirm('Deseja excluir esta meta?')">
+        <button style="
+            background:#e74c3c;
+            color:white;
+            border:none;
+            padding:6px 10px;
+            border-radius:6px;
+            cursor:pointer;
+        ">
+            🗑 Excluir
+        </button>
+    </a>
+
+</div>
+
+<!-- 🔥 VALOR PRINCIPAL -->
+<div style="margin-top:5px;">
+    <strong class="valor-positivo">
+        {{ total_investido|real }}
+    </strong>
+    / {{ m[2]|real }}
+</div>
+
+<!-- 🔥 NOVO: SEPARAÇÃO -->
+<div style="font-size:14px; margin-top:5px; color:#555;">
+
+    <span style="color:#27ae60; font-weight:600;">
+        📈 Investido: {{ total_investimentos|real }}
+    </span>
+    <br>
+
+    <span style="color:#3498db; font-weight:600;">
+        💰 Guardado: {{ total_guardado_meta|real }}
+    </span>
+
+</div>
+
+<div style="color:#e74c3c; font-size:14px;">
+    Falta: {{ (m[2] - total_investido)|real }}
+</div>
+
+<div class="barra">
+
+    <!-- 📈 INVESTIMENTO -->
+    <div style="
+        width: {{ perc_invest }}%;
+        height:100%;
+        background:#27ae60;
+        float:left;
+    "></div>
+
+    <!-- 💰 META -->
+    <div style="
+        width: {{ perc_meta }}%;
+        height:100%;
+        background:#3498db;
+        float:left;
+    "></div>
+
+</div>
+
+<small>
+    {{ progresso|round(0) }}%
+</small>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>

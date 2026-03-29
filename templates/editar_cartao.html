@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Cartão</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: #f4f6f8;
+}
+
+.container {
+    width: 95%;
+    max-width: 600px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.btn-voltar {
+    background: #4E95D9;
+    color: white !important;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    background-color: #4E95D9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="topo">
+    <a href="/cartao" class="btn-voltar">⬅ Voltar</a>
+    <h1>Editar Cartão</h1>
+</div>
+
+<form method="post" action="/atualizar_cartao_config/{{ cartao[0] }}">
+
+    <label>Nome do cartão</label>
+    <input type="text" name="nome_cartao" value="{{ cartao[1] }}" required>
+
+    <label>Limite</label>
+    <input type="number" step="0.01" name="limite" value="{{ cartao[2] }}" required>
+
+    <label>Dia de fechamento</label>
+    <input type="number" name="fechamento" value="{{ cartao[4] }}" required>
+
+    <button type="submit" class="btn">
+        💾 Salvar Alterações
+    </button>
+
+</form>
+
+</div>
+
+</body>
+</html>

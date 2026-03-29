@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parcelas</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f6f8;
+    overflow-x: hidden;
+}
+
+/* CONTAINER */
+.container {
+    width: 95%;
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+/* TÍTULO */
+h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* BOTÃO VOLTAR */
+.btn-voltar {
+    display: inline-block;
+    background: #4E95D9;
+    color: white !important;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+/* RESUMO */
+.resumo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.resumo div {
+    background: #eef3f7;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.resumo strong {
+    font-size: 13px;
+    color: #555;
+}
+
+.resumo span {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* BLOCO */
+.bloco {
+    margin-top: 20px;
+}
+
+/* TABELA */
+.tabela-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th {
+    background: #4E95D9;
+    color: white;
+    font-size: 13px;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* INPUTS */
+input, select {
+    width: 100%;
+    padding: 6px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* BOTÕES */
+.btn {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 2px;
+}
+
+.btn-primary { background: #4E95D9; color: white; }
+.btn-success { background: #27ae60; color: white; }
+.btn-warning { background: orange; color: white; }
+.btn-danger { background: #e74c3c; color: white; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        padding: 12px;
+        border-radius: 0;
+    }
+
+    .resumo {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📄 Parcelas da Compra</h1>
+
+<a href="/cartao" class="btn-voltar">⬅ Voltar</a>
+
+<p><strong>Descrição:</strong> {{ compra[4] }}</p>
+<p><strong>Valor Total:</strong> {{ compra[2] }}</p>
+<p><strong>Parcelas:</strong> {{ compra[3] }}</p>
+
+<hr>
+
+<!-- RESUMO -->
+<div class="resumo">
+
+<div>
+    <strong>Total da Compra</strong>
+    <span>R$ {{ "%.2f"|format(total_compra) }}</span>
+</div>
+
+<div>
+    <strong>Total Pago</strong>
+    <span>R$ {{ "%.2f"|format(total_pago) }}</span>
+</div>
+
+<div>
+    <strong>Falta Pagar</strong>
+    <span>R$ {{ "%.2f"|format(total_pendente) }}</span>
+</div>
+
+</div>
+
+<!-- FATURA -->
+<div class="bloco">
+
+<h3>📅 Faturas</h3>
+
+{% for mes, valor in faturas.items() %}
+    <div style="margin-bottom:5px;">
+        <strong>{{ mes }}</strong> → 
+        R$ {{ "%.2f"|format(valor) }}
+    </div>
+{% endfor %}
+
+</div>
+
+<!-- FORM -->
+<div class="bloco">
+
+<h3>➕ Nova Parcela</h3>
+
+<form method="post" action="/add_parcela/{{ compra[0] }}">
+
+<div class="tabela-container">
+<table>
+<tr>
+    <th>Data</th>
+    <th>Valor</th>
+    <th>Nº Parcela</th>
+    <th>Paga</th>
+</tr>
+
+<tr>
+    <td><input type="date" name="data" required></td>
+    <td><input type="number" step="0.01" name="valor" required></td>
+    <td><input type="number" name="num" required></td>
+    <td>
+        <select name="paga">
+            <option>Não</option>
+            <option>Sim</option>
+        </select>
+    </td>
+</tr>
+
+</table>
+</div>
+
+<br>
+
+<button type="submit" class="btn btn-primary">💾 Salvar Parcela</button>
+
+</form>
+
+</div>
+
+<!-- LISTA -->
+<div class="bloco">
+
+<h3>📊 Parcelas Lançadas</h3>
+
+<div class="tabela-container">
+
+<table>
+<tr>
+    <th>Data</th>
+    <th>Valor</th>
+    <th>Nº</th>
+    <th>Paga</th>
+    <th>Ação</th>
+</tr>
+
+{% for p in parcelas %}
+<tr>
+    <td>{{ p[1].split('-')[2] }}/{{ p[1].split('-')[1] }}/{{ p[1].split('-')[0] }}</td>
+    <td>R$ {{ p[2] }}</td>
+    <td>{{ p[3] }}</td>
+    <td>{{ "Sim" if p[4] == 1 else "Não" }}</td>
+
+<td>
+    {% if p[4] == 0 %}
+        <a href="/pagar_parcela/{{ p[0] }}/{{ compra[0] }}">
+            <button class="btn btn-success">Pagar</button>
+        </a>
+    {% else %}
+        <a href="/desfazer_parcela/{{ p[0] }}/{{ compra[0] }}">
+            <button class="btn btn-warning">Desfazer</button>
+        </a>
+    {% endif %}
+
+    <a href="/excluir_parcela/{{ p[0] }}/{{ compra[0] }}">
+        <button class="btn btn-danger">Excluir</button>
+    </a>
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

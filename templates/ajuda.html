@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Ajuda</title>
+
+<style>
+
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #dbe3ec;
+  overflow-x: hidden;
+}
+
+/* TOPO */
+.topo {
+  background: #9fb3c8;
+  padding: 12px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* CONTEÚDO */
+.conteudo {
+  padding: 15px;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* LINK */
+.conteudo a {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #4E95D9;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* BLOCOS */
+.bloco {
+  background: white;
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* TÍTULOS */
+h2 {
+  margin-top: 0;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+
+/* TEXTO */
+p {
+  line-height: 1.6;
+  color: #374151;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* LISTAS */
+ul, ol {
+  padding-left: 18px;
+  font-size: 14px;
+  color: #374151;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  .conteudo {
+    padding: 12px;
+    max-width: 100%;
+  }
+
+  .bloco {
+    padding: 14px;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-size: 15px;
+  }
+
+  p, ul, ol {
+    font-size: 13px;
+  }
+
+}
+
+.btn-voltar {
+  display: inline-block;
+  background: #4E95D9;
+  color: white !important; /* 👈 força branco */
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 15px;
+  transition: 0.2s;
+}
+
+.btn-voltar:hover {
+  background: #3b7bb8;
+  color: white;
+}
+
+.btn-voltar:visited {
+  color: white;
+}
+
+.btn-voltar:active {
+  transform: scale(0.95);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topo">Ajuda do Sistema</div>
+
+<div class="conteudo">
+<div style="margin-top:15px;">
+    <a href="/dashboard" class="btn-voltar">⬅ Voltar</a>
+</div><br>
+  <div class="bloco">
+    <h2>📘 Sobre o Sistema</h2>
+    <p>
+      O <strong>Fluxo Certo</strong> é um sistema simples e eficiente para controle financeiro pessoal.
+    </p>
+    <p>
+      Com ele, você pode registrar suas receitas, despesas, controlar cartões de crédito,
+      acompanhar investimentos e definir metas financeiras.
+    </p>
+    <p>
+      Tudo em um único lugar, de forma prática e organizada.
+    </p>
+  </div>
+
+  <div class="bloco">
+    <h2>📊 Painel Financeiro</h2>
+    <p>Ao acessar o sistema, você verá o Painel Financeiro.</p>
+    <p>Nele são exibidos:</p>
+    <ul>
+      <li>Receita do mês</li>
+      <li>Despesa do mês</li>
+      <li>Saldo do mês</li>
+      <li>Totais anuais</li>
+    </ul>
+    <p>
+      Além disso, você pode visualizar gráficos com a evolução do seu saldo.
+    </p>
+    <p>
+      Utilize o botão <strong>"Atualizar dados"</strong> sempre que inserir novas informações.
+    </p>
+  </div>
+
+  <div class="bloco">
+    <h2>📒 Livro Caixa</h2>
+    <p>Registre todas as suas receitas e despesas.</p>
+    <p><strong>Como usar:</strong></p>
+    <ol>
+      <li>Clique em <strong>"Adicionar"</strong></li>
+      <li>Informe:
+        <ul>
+          <li>Tipo (Receita ou Despesa)</li>
+          <li>Data</li>
+          <li>Descrição</li>
+          <li>Valor</li>
+        </ul>
+      </li>
+      <li>Clique em <strong>"Salvar"</strong></li>
+    </ol>
+    <p>
+      Você pode pesquisar por mês para facilitar a visualização.
+    </p>
+  </div>
+
+  <div class="bloco">
+<h2>💳 Controle de Cartão de Crédito</h2>
+
+<p>Gerencie suas compras no cartão de forma simples e automática.</p>
+
+<ul>
+    <li>Registrar compras</li>
+    <li>Parcelas são geradas automaticamente</li>
+    <li>Editar valores, se necessário</li>
+    <li>Acompanhar valores pagos</li>
+    <li>Visualizar total da fatura do mês</li>
+</ul>
+
+<p>Evite surpresas no fechamento da fatura.</p>
+  </div>
+
+  <div class="bloco">
+  <h2>📈 Investimentos</h2>
+
+  <p>
+    Nesta tela você acompanha todos os seus investimentos de forma automática.
+  </p>
+
+  <p>
+    Os lançamentos não são feitos aqui. Para investir ou resgatar valores, utilize o <strong>Livro Caixa</strong>.
+  </p>
+
+  <ul>
+    <li><strong>💸 Aporte:</strong> registre como <b>Despesa</b> e categoria <b>Investimento</b></li>
+    <li><strong>💰 Resgate:</strong> registre como <b>Receita</b> e categoria <b>Investimento</b></li>
+  </ul>
+
+  <p>
+    Todos os lançamentos feitos no Livro Caixa aparecerão automaticamente aqui, permitindo acompanhar:
+  </p>
+
+  <ul>
+    <li>Total investido</li>
+    <li>Total resgatado</li>
+    <li>Saldo atual</li>
+  </ul>
+
+  <p>
+    Dessa forma, você mantém um histórico completo e preciso dos seus investimentos, sem precisar lançar dados em duplicidade.
+  </p>
+</div>
+
+
+  <div class="bloco">
+    <h2>🎯 Metas</h2>
+    <p>Defina seus objetivos financeiros:</p>
+    <ul>
+      <li>Reserva de emergência</li>
+      <li>Compra de bens</li>
+      <li>Planejamento futuro</li>
+    </ul>
+    <p>O sistema mostra:</p>
+    <ul>
+      <li>Valor atual</li>
+      <li>Valor esperado</li>
+      <li>Progresso da meta</li>
+      <li>Quanto falta atingir</li>
+    </ul>
+    <p>
+      Isso ajuda você a manter o foco financeiro.
+    </p>
+  </div>
+
+  <div class="bloco">
+    <h2>⚠️ Dicas Importantes</h2>
+    <ul>
+      <li>Mantenha os dados sempre atualizados</li>
+      <li>Utilize o sistema diariamente ou semanalmente</li>
+      <li>Revise seus gastos mensalmente</li>
+      <li>Defina metas realistas</li>
+    </ul>
+    <p>
+      O controle financeiro é o primeiro passo para uma vida mais tranquila.
+    </p>
+  </div>
+
+  <div class="bloco">
+    <h2>📩 Suporte</h2>
+    <p><strong>Nina Guimarães</strong></p>
+    <p>ignina@gmail.com</p>
+    <p>No assunto, informe: <strong>Sistema Fluxo Certo</strong></p>
+    <p>
+      Explique no corpo do e-mail suas dúvidas e o que deseja.
+    </p>
+  </div>
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Investimentos</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f6f8;
+    overflow-x: hidden;
+}
+
+/* CONTAINER */
+.container {
+    width: 95%;
+    max-width: 1000px;
+    margin: 15px auto;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+/* TÍTULO */
+h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+/* BOTÃO VOLTAR */
+.btn-voltar {
+    display: inline-block;
+    background: #4E95D9;
+    color: white !important;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #e3e9f0;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card strong {
+    font-size: 12px;
+    color: #555;
+}
+
+.card span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.valor-positivo {
+    color: #27ae60;
+}
+
+/* BOTÃO NOVO */
+.btn-novo {
+    background:#4E95D9;
+    color:white;
+    padding:8px 12px;
+    border-radius:6px;
+    text-decoration:none;
+    display:inline-block;
+    margin:10px 0;
+}
+
+/* LISTA */
+.item {
+    background:#f8fafc;
+    border:1px solid #e3e8ee;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:10px;
+}
+
+.item strong {
+    font-size:15px;
+}
+
+.item-data {
+    font-size:12px;
+    color:#666;
+}
+
+.item-valor {
+    margin-top:6px;
+    font-size:14px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        padding: 12px;
+        border-radius: 0;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    /* CARDS */
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .card span {
+        font-size: 16px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📈 Investimentos</h1>
+<div style="margin-top:15px;">
+    <a href="/dashboard" class="btn-voltar">
+        ⬅ Voltar
+    </a>
+</div><br>
+
+<!-- 🔥 CARDS (PADRÃO CARTÕES) -->
+<div class="cards">
+
+    <div class="card">
+        <strong>Total Aplicado</strong><br>
+        <span>{{ total_aplicado|real }}</span>
+    </div>
+
+    <div class="card">
+        <strong>Total Rendimento</strong><br>
+        <span class="valor-positivo">{{ total_rendimento|real }}</span>
+    </div>
+
+    <div class="card">
+        <strong>Total Resgate</strong><br>
+        <span>{{ total_resgate|real }}</span>
+    </div>
+
+    <div class="card">
+        <strong>Saldo</strong><br>
+        <span style="color:green;">R$ {{ saldo }}</span>
+    </div>
+
+</div>
+
+<hr>
+
+<div style="margin:15px 0;">
+    <a href="/livrocaixa" class="btn-novo">
+        ➕ Novo Investimento
+    </a>
+</div>
+
+<!-- 🔥 TABELA -->
+<h3>📊 Investimentos Lançados</h3>
+
+{% for i in investimentos %}
+<div class="item">
+
+    <strong style="font-size:16px;">
+        {{ i[1] }}
+    </strong>
+
+    <div class="item-data">
+        {{ i[0].split('-')[2] }}/{{ i[0].split('-')[1] }}/{{ i[0].split('-')[0] }}
+    </div>
+
+    <div class="item-valor">
+        💰 R$ {{ i[2] }}
+    </div>
+
+</div>
+{% endfor %}
+
+<br>
+
+
+</div>
+
+</body>
+</html>

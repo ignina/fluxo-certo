@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin - Usuários</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f6f8;
+}
+
+/* CONTAINER */
+.container {
+    width: 95%;
+    max-width: 900px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+/* TOPO */
+.topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* BOTÃO VOLTAR */
+.btn-voltar {
+    background: #4E95D9;
+    color: white !important;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+/* FORM */
+.form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* BOTÕES */
+.btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.2s;
+}
+
+/* AZUL PADRÃO */
+.btn-primary {
+    background: #4E95D9;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #3b7bb8;
+}
+
+/* LARANJA RESET */
+.btn-reset {
+    background: #f39c12;
+    color: white;
+    font-size: 12px;
+    padding: 6px 10px;
+}
+
+.btn-reset:hover {
+    background: #d68910;
+}
+
+/* CARD USUÁRIO */
+.user-box {
+    border: 1px solid #e3e8ee;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: #f8fafc;
+}
+
+.user-nome {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.user-acoes {
+    margin-top: 8px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .container {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .form {
+        flex-direction: column;
+    }
+
+    input {
+        width: 100%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- TOPO -->
+<div class="topo">
+    <a href="/dashboard" class="btn-voltar">⬅ Voltar</a>
+    <h2>👤 Administração</h2>
+</div>
+
+<!-- FORM -->
+<form method="POST" action="/salvar-usuario" class="form">
+
+    <input type="text" name="usuario" placeholder="Usuário" required>
+    <input type="password" name="senha" placeholder="Senha" required>
+
+    <button class="btn btn-primary">Cadastrar</button>
+
+</form>
+
+<hr>
+
+<!-- LISTA -->
+{% for u in usuarios %}
+
+<div class="user-box">
+
+    <div class="user-nome">
+        {{ u[1] }}
+    </div>
+
+    <!-- 📅 VENCIMENTO -->
+    <div style="margin-top:5px; font-size:12px;">
+        Vencimento:
+        <strong>
+            {{ u[5] if u[5] else "Não definido" }}
+        </strong>
+    </div>
+
+    <!-- 🔄 ATUALIZAR VENCIMENTO -->
+    <form method="POST" action="/atualizar-vencimento/{{ u[0] }}" style="margin-top:8px;">
+        <input type="date" name="vencimento" required>
+        <button class="btn btn-primary">Atualizar</button>
+    </form>
+
+    <!-- 🔑 RESET -->
+    <div class="user-acoes">
+        <a href="/resetar-senha/{{ u[0] }}"
+           onclick="return confirm('Resetar senha?')">
+
+            <button class="btn-reset">
+                🔑 Resetar Senha
+            </button>
+
+        </a>
+    </div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>
